@@ -8,7 +8,7 @@ import (
 	"syscall"
 	"time"
 
-	"git.sr.ht/~spc/go-log"
+	"github.com/subpop/go-log"
 
 	"github.com/redhatinsights/yggdrasil/worker"
 	pb "github.com/redhatinsights/yggdrasil_v0/protocol"

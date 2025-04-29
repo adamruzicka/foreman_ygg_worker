@@ -3,7 +3,7 @@ module github.com/theforeman/ygg_worker
 go 1.19
 
 require (
-	git.sr.ht/~spc/go-log v0.1.1
+	github.com/subpop/go-log v0.1.1
 	github.com/google/uuid v1.6.0
 	github.com/redhatinsights/yggdrasil v0.4.2
 	github.com/redhatinsights/yggdrasil_v0 v0.0.0-20210811162724-41397343c25b
