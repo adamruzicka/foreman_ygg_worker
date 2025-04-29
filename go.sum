@@ -1,5 +1,5 @@
-github.com/subpop/go-log v0.1.1 h1:SVWMwHX4QRSsHNl0cRNoytL5uPVFoQhv4pdTa5PnBt4=
-github.com/subpop/go-log v0.1.1/go.mod h1:Albq15b/jXGrQ659oyB8X1wX8quqpU+LxXFw7YmEuTg=
+git.sr.ht/~spc/go-log v0.1.1 h1:pdfV6Q1pNcGVT77DAWzc6LxJyi83PRu1ioZo98ZobAU=
+git.sr.ht/~spc/go-log v0.1.1/go.mod h1:Albq15b/jXGrQ659oyB8X1wX8quqpU+LxXFw7YmEuTg=
 github.com/godbus/dbus/v5 v5.1.0 h1:4KLkAxT3aOY8Li4FRJe/KvhoNFFxo0m6fNuFUO8QJUk=
 github.com/godbus/dbus/v5 v5.1.0/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
 github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaSAoJOfIk=
@@ -11,6 +11,8 @@ github.com/google/uuid v1.6.0 h1:NIvaJDMOsjHA8n1jAhLSgzrAzy1Hgr+hNrb57e+94F0=
 github.com/google/uuid v1.6.0/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
 github.com/redhatinsights/yggdrasil v0.4.2 h1:onXUovgkFn0bJr5aVPVcP7Xv6NcCLO7EbmvWxya5+yQ=
 github.com/redhatinsights/yggdrasil v0.4.2/go.mod h1:zQKq1GVJq0Kn05pKN7CQmYbhUtqGe4WSduBUdTKlXqs=
+github.com/subpop/go-log v0.1.2 h1:NgbZR6frmeDtC+96d+UxOkt4X/JxO626fokwL56Dff0=
+github.com/subpop/go-log v0.1.2/go.mod h1:uAEovif98swmWm/8qYGrzGFahUIRQ/KwlBUpJuoOdds=
 golang.org/x/net v0.23.0 h1:7EYJ93RZ9vYSZAIb2x3lnuvqO5zneoD6IvWjuhfxjTs=
 golang.org/x/net v0.23.0/go.mod h1:JKghWKKOSdJwpW2GEx0Ja7fmaKnMsbu+MWVZTokSYmg=
 golang.org/x/sys v0.22.0 h1:RI27ohtqKCnwULzJLqkv897zojh5/DwS/ENaMzUOaWI=

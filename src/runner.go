@@ -11,8 +11,8 @@ import (
 	"sync"
 	"syscall"
 
-	"github.com/subpop/go-log"
 	"github.com/google/uuid"
+	"github.com/subpop/go-log"
 )
 
 const preStartErrorExitCode = 254
