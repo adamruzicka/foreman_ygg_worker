@@ -3,7 +3,7 @@ LIBEXECDIR := /usr/libexec
 WORKER_GROUP := yggdrasil-worker
 
 ifeq ($(origin VERSION), undefined)
-	VERSION := 0.3.0
+	VERSION := 0.3.1
 endif
 
 go_sources := $(wildcard src/*.go)
