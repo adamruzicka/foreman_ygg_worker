@@ -25,6 +25,7 @@ func printHelp() {
 	fmt.Println("\nThis worker connects to Yggdrasil and handles foreman tasks.")
 	fmt.Println("\nOptions:")
 	fmt.Println("  -h, --help     Show this help message")
+	fmt.Println("  --log-level    Set the logging level (e.g., debug, info, warn, error)")
 	fmt.Println("\nEnvironment Variables:")
 	fmt.Println("  YGG_LOG_LEVEL     Set the logging level (e.g., debug, info, warn, error)")
 	fmt.Println("  YGG_SOCKET_ADDR   Address of the Yggdrasil dispatcher socket for gRPC connection")
@@ -36,6 +37,7 @@ func main() {
 	// Parse command line flags
 	help := flag.Bool("h", false, "Show help message")
 	helpLong := flag.Bool("help", false, "Show help message")
+	logLevelFlag := flag.String("log-level", "", "Set the logging level (e.g., debug, info, warn, error)")
 	flag.Parse()
 
 	// Show help if requested
@@ -43,6 +45,8 @@ func main() {
 		printHelp()
 		return
 	}
+
+	setLogLevel(*logLevelFlag)
 
 	args := flag.Args()
 	if len(args) > 1 {
@@ -61,20 +65,6 @@ func main() {
 
 func runWorker() {
 	var ok bool
-
-	yggdLogLevel, ok := os.LookupEnv("YGG_LOG_LEVEL")
-	if ok {
-		level, ok := log.ParseLevel(yggdLogLevel)
-		if ok != nil {
-			log.Errorf("Could not parse log level '%v'", yggdLogLevel)
-		} else {
-			log.SetLevel(level)
-		}
-	} else {
-		// Yggdrasil < 3.0 does not share its configured log level with the
-		// workers in any way
-		log.SetLevel(log.LevelInfo)
-	}
 
 	js := newJobStorage()
 	fs := foremanServer{
@@ -140,6 +130,25 @@ func runWorker() {
 		if err := w.Connect(quit); err != nil {
 			log.Fatalf("cannot connect: %v", err)
 		}
+	}
+}
+
+// Determine log level: CLI flag > env var > default
+func setLogLevel(logLevelFlag string) {
+	logLevel := ""
+	if logLevelFlag != "" {
+		logLevel = logLevelFlag
+	} else if envLevel, ok := os.LookupEnv("YGG_LOG_LEVEL"); ok {
+		// Yggdrasil >= 3.0 shares its configured log level with the workers this way
+		logLevel = envLevel
+	} else {
+		logLevel = "info"
+	}
+
+	if level, err := log.ParseLevel(logLevel); err != nil {
+		log.Errorf("Could not parse log level '%v'", logLevel)
+	} else {
+		log.SetLevel(level)
 	}
 }
 
