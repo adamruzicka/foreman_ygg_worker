@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"flag"
+	"fmt"
 	"net"
 	"os"
 	"os/signal"
@@ -18,7 +20,45 @@ import (
 
 var yggdDispatchSocketAddr string
 
+func printHelp() {
+	fmt.Println("Usage: foreman_ygg_worker [options]")
+	fmt.Println("\nThis worker connects to Yggdrasil and handles foreman tasks.")
+	fmt.Println("\nOptions:")
+	fmt.Println("  -h, --help     Show this help message")
+	fmt.Println("\nEnvironment Variables:")
+	fmt.Println("  YGG_LOG_LEVEL     Set the logging level (e.g., debug, info, warn, error)")
+	fmt.Println("  YGG_SOCKET_ADDR   Address of the Yggdrasil dispatcher socket for gRPC connection")
+	fmt.Println("  FOREMAN_YGG_WORKER_WORKDIR   Directory to store worker state, if unset XDG_RUNTIME_DIR is used")
+	fmt.Println("  XDG_RUNTIME_DIR   Directory to store worker state, if unset /run is used")
+}
+
 func main() {
+	// Parse command line flags
+	help := flag.Bool("h", false, "Show help message")
+	helpLong := flag.Bool("help", false, "Show help message")
+	flag.Parse()
+
+	// Show help if requested
+	if *help || *helpLong {
+		printHelp()
+		return
+	}
+
+	if len(os.Args) > 1 {
+		// Parse the subcommand
+		subcommand := os.Args[1]
+		switch subcommand {
+		default:
+			fmt.Printf("Unknown subcommand: %s\n", os.Args[1])
+			printHelp()
+			os.Exit(1)
+		}
+	} else {
+		runWorker()
+	}
+}
+
+func runWorker() {
 	var ok bool
 
 	yggdLogLevel, ok := os.LookupEnv("YGG_LOG_LEVEL")
@@ -100,7 +140,6 @@ func main() {
 			log.Fatalf("cannot connect: %v", err)
 		}
 	}
-
 }
 
 func determineWorkdir() string {
