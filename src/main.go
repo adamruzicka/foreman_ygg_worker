@@ -44,12 +44,13 @@ func main() {
 		return
 	}
 
-	if len(os.Args) > 1 {
+	args := flag.Args()
+	if len(args) > 1 {
 		// Parse the subcommand
-		subcommand := os.Args[1]
+		subcommand := args[1]
 		switch subcommand {
 		default:
-			fmt.Printf("Unknown subcommand: %s\n", os.Args[1])
+			fmt.Printf("Unknown subcommand: %s\n", subcommand)
 			printHelp()
 			os.Exit(1)
 		}
