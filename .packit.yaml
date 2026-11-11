@@ -25,6 +25,7 @@ jobs:
     trigger: pull_request
     targets:
       - rhel-9
+      - rhel-10
 
 srpm_build_deps:
   - golang
